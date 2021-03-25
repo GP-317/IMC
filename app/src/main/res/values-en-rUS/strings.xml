@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BMI</string>
+    <string name="poids">Weight :</string>
+    <string name="taille">Height :</string>
+    <string name="d_terminez_votre_taille">Write in your height :</string>
+    <string name="d_terminez_votre_poids">Write in your weight :</string>
+    <string name="appr_ciation">Appreciation :</string>
+    <string name="calculer_imc">Calculate BMI</string>
+    <string name="reset">Reset</string>
+    <string name="r_sultat">Result :</string>
+    <string name="vous_devez_cliquer_sur_le_bouton_calculer_imc_pour_obtenir_un_r_sultat">You must click on the \"Calculate BMI\" button in order to get your result</string>
+    <string name="m_tre">Meter</string>
+    <string name="centim_tre">Centimeter</string>
+</resources>
