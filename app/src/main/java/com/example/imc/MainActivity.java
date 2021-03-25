@@ -1,7 +1,9 @@
 package com.example.imc;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private View.OnClickListener envoyerListener = new View.OnClickListener() {
+        @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         public void onClick(View v) {
             // on récupère la taille
@@ -71,18 +74,18 @@ public class MainActivity extends AppCompatActivity {
             float tValue = Float.valueOf(t);
             // Puis on vérifie que la taille est cohérente
             if(tValue <= 0)
-                Toast.makeText(MainActivity.this, "La taille doit être positive",
+                Toast.makeText(MainActivity.this, R.string.height_error_notPositive,
                         Toast.LENGTH_SHORT).show();
             else {
                 float pValue = Float.valueOf(p);
                 if(pValue <= 0)
-                    Toast.makeText(MainActivity.this, "Le poids doit etre positif", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, R.string.weight_error_notPositive, Toast.LENGTH_SHORT).show();
                 else {
                     // Si l'utilisateur a indiqué que la taille était en centimètres
                     // On vérifie que la Checkbox sélectionnée est la deuxième à l'aide de son identifiant
                     if (group.getCheckedRadioButtonId() == R.id.radio_centimetre) tValue = tValue / 100;
                     float imc = pValue / (tValue * tValue);
-                    String resultat="Votre IMC est " + imc +". ";
+                    String resultat=getString(R.string.your_bmi) + imc +". ";
                     if(commentaire.isChecked()) resultat += interpreteIMC(imc);
                     result.setText(resultat);
                 }
@@ -90,35 +93,36 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private String interpreteIMC(float imc)
     {
         String cmt;
 
         if(imc > 40)
         {
-            cmt = "Vous êtes en obésité morbide ou massive.";
+            cmt = getString(R.string.obesite_morbide);
         }
         else if(imc > 35)
         {
-            cmt = "Vous ête en obésité sévère.";
+            cmt = getString(R.string.obesite_severe);
         }
         else if(imc > 30)
         {
-            cmt = "Vous êtes en obésité modérée.";
+            cmt = getString(R.string.obesite_moderee);
         }
         else if(imc > 25)
         {
-            cmt = "Vous êtes en surpoids.";
+            cmt = getString(R.string.surpoids);
         }
         else if(imc > 18.5)
         {
-            cmt = "Vous avez une corpulence normale.";
+            cmt = getString(R.string.normal);
         }
         else if(imc > 16.5)
         {
-            cmt = "Vous êtes en état de maigreur.";
+            cmt = getString(R.string.maigreur);
         }
-        else cmt = "Vous êtes en état de famine.";
+        else cmt = getString(R.string.famine);
 
         return cmt;
 
